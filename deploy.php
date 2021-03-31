@@ -36,18 +36,18 @@ task('deploy:secrets', function () {
 });
 
 // Production Server
-host('myapp.io') // Name of the server
-->hostname('104.248.172.220') // Hostname or IP address
-->stage('production') // Deployment stage (production, staging, etc)
-->user('root') // SSH user
-->set('deploy_path', '/var/www/my-app'); // Deploy path
+host('botdev.uz') // Name of the server
+    ->hostname('37.77.104.77') // Hostname or IP address
+    ->stage('production') // Deployment stage (production, staging, etc)
+    ->user('root') // SSH user
+    ->set('deploy_path', '/var/www/deploy_tut'); // Deploy path
 
 // Staging Server
-host('staging.myapp.io') // Name of the server
-->hostname('104.248.172.220') // Hostname or IP address
-->stage('staging') // Deployment stage (production, staging, etc)
-->user('root') // SSH user
-->set('deploy_path', '/var/www/my-app-staging'); // Deploy path
+// host('staging.myapp.io') // Name of the server
+// ->hostname('104.248.172.220') // Hostname or IP address
+// ->stage('staging') // Deployment stage (production, staging, etc)
+// ->user('root') // SSH user
+// ->set('deploy_path', '/var/www/my-app-staging'); // Deploy path
 
 after('deploy:failed', 'deploy:unlock'); // Unlock after failed deploy
 
@@ -68,7 +68,7 @@ task('deploy', [
     'artisan:config:cache', // | Laravel Specific steps
     //'artisan:optimize',     // |
     'artisan:migrate',      // |
-    'artisan:queue:restart',// |
+    'artisan:queue:restart', // |
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
